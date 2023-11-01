@@ -1,0 +1,64 @@
+name: CI Test - targets input
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  install_on_runner:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+        # These are 2 more exotic targets that are not found on the runners
+        target:
+          - wasm32-unknown-unknown, arm-linux-androideabi
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use myself
+        uses: ./
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+          targets: ${{ matrix.target }}
+
+      - name: Test ${{ matrix.target }} exists
+        # We check for 3 as we expect the target for the current runner + 2
+        # from the target from the matrix
+        run: test $(rustup target list | grep -c installed) -eq 3
+
+  install_in_docker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # These are 2 more exotic targets that are not found on the runners
+        target:
+          - wasm32-unknown-unknown, arm-linux-androideabi
+    # Docker image, not the GitHub Actions VM
+    container: ubuntu:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+        # `rustup` will need `curl` or `wget` later
+      - name: Install packages
+        run: apt-get update && apt-get install -y curl
+
+      - name: Use myself
+        uses: ./
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+          targets: ${{ matrix.target }}
+
+      - name: Test ${{ matrix.target }} exists
+        # We check for 3 as we expect the target for the current runner + 2
+        # from the target from the matrix
+        run: test $(rustup target list | grep -c installed) -eq 3
