@@ -1,11 +1,20 @@
 {
-  "clearMocks": true,
-  "moduleFileExtensions": ["js", "ts"],
-  "testEnvironment": "node",
-  "testMatch": ["**/*.test.ts"],
-  "testRunner": "jest-circus/runner",
-  "transform": {
-    "^.+\\.ts$": "ts-jest"
-  },
-  "verbose": true
+    "clearMocks": true,
+    "moduleFileExtensions": ["js", "ts"],
+    "testEnvironment": "node",
+    "testMatch": ["**/*.test.ts"],
+    "testRunner": "jest-circus/runner",
+    "transform": {
+        "^.+\\.ts$": "ts-jest"
+    },
+    "collectCoverage": true,
+    "coverageReporters": [
+        "text",
+        "cobertura"
+    ],
+    "preset": "ts-jest",
+    "collectCoverageFrom": [
+        "src/**/*.{js,jsx,ts,tsx}",
+        "!<rootDir>/node_modules/"
+    ]
 }
