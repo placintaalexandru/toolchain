@@ -1,0 +1,60 @@
+name: CI Test - toolchain version
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  install_on_runner:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+        toolchain:
+          - 1.70.0
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use myself
+        id: toolchain
+        uses: ./
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          profile: minimal
+          override: true
+
+      - name: Test toolchain version
+        run: |
+          test "${{ steps.toolchain.outputs.rustc }}" = "${{ matrix.toolchain }}"
+
+  install_in_docker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - 1.70.0
+    # Docker image, not the GitHub Actions VM
+    container: ubuntu:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+        # `rustup` will need `curl` or `wget` later
+      - name: Install packages
+        run: apt-get update && apt-get install -y curl
+
+      - name: Use myself
+        id: toolchain
+        uses: ./
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          profile: minimal
+          override: true
+
+      - name: Test toolchain version
+        run: |
+          test "${{ steps.toolchain.outputs.rustc }}" = "${{ matrix.toolchain }}"

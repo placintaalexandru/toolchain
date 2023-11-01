@@ -6,19 +6,20 @@
     "main": "lib/main.js",
     "directories": {
         "lib": "lib",
-        "test": "__tests__"
+        "test": "tests"
     },
     "scripts": {
-        "build": "rm -rf ./dist/* && ncc build src/main.ts --minify",
-        "format": "prettier --write 'src/**/*.ts' '__tests__/**/*.ts'",
-        "lint": "tsc --noEmit && eslint 'src/**/*.ts' '__tests__/**/*.ts'",
+        "clean": "rm -rf ./dist/*",
+        "build": "npm run clean && ncc build src/main.ts --minify",
+        "format": "prettier --write 'src/**/*.ts' 'tests/**/*.ts'",
+        "lint": "tsc --noEmit && eslint 'src/**/*.ts' 'tests/**/*.ts'",
         "watch": "rm -rf ./dist/* && ncc build src/main.ts --watch",
         "test": "jest -c jest.config.json",
         "pretest": "git config core.hooksPath .githooks"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/actions-rs/toolchain.git"
+        "url": "git+https://github.com/placintaalexandru/toolchain.git"
     },
     "keywords": [
         "actions",
@@ -29,30 +30,36 @@
     "author": "actions-rs",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/actions-rs/toolchain/issues"
+        "url": "https://github.com/placintaalexandru/rust-core/issues"
     },
     "dependencies": {
-        "@actions-rs/core": "^0.1.6",
         "@actions/core": "^1.2.6",
         "@actions/exec": "^1.0.4",
-        "@actions/io": "^1.0.2"
+        "@actions/io": "^1.0.2",
+        "@actions/tool-cache": "^1.6.1",
+        "action-input-parser": "1.2.38",
+        "commander": "11.1.0",
+        "semver": "^7.3.2",
+        "stream": "^0.0.2",
+        "toml": "^3.0.0"
     },
     "devDependencies": {
-        "@types/jest": "^26.0.15",
-        "@types/node": "^14.14.7",
-        "@typescript-eslint/eslint-plugin": "^4.8.1",
-        "@typescript-eslint/parser": "^4.8.1",
-        "@zeit/ncc": "^0.22.3",
-        "eslint": "^7.13.0",
-        "eslint-config-prettier": "^6.15.0",
-        "eslint-plugin-prettier": "^3.1.4",
-        "jest": "^26.6.3",
+        "@fast-check/jest": "^1.7.3",
+        "@types/jest": "^29.5.6",
+        "@types/node": "^20.8.7",
+        "@types/semver": "^7.3.4",
+        "@typescript-eslint/eslint-plugin": "^6.8.0",
+        "@typescript-eslint/parser": "^6.8.0",
+        "@vercel/ncc": "0.38.1",
+        "eslint": "^8.52.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.1",
+        "jest": "^29.7.0",
         "jest-circus": "^26.6.3",
-        "mock-env": "^0.2.0",
-        "npm-check-updates": "^10.2.1",
-        "prettier": "^2.1.2",
-        "temp-write": "^4.0.0",
-        "ts-jest": "^26.4.4",
-        "typescript": "^4.0.5"
+        "npm-check-updates": "^16.14.6",
+        "prettier": "^3.0.3",
+        "temp-write": "^5.0.0",
+        "ts-jest": "^29.1.1",
+        "typescript": "5.2.2"
     }
 }

@@ -1,0 +1,77 @@
+name: CI Test - install stable & nightly
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  install_on_runner:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+        toolchain:
+          - stable
+          - nightly
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use myself
+        id: toolchain
+        uses: ./
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          profile: minimal
+          override: true
+
+      - name: Test action outputs
+        env:
+          RUSTC: ${{ steps.toolchain.outputs.rustc }}
+          RUSTC_HASH: ${{ steps.toolchain.outputs.rustc_hash }}
+          CARGO: ${{ steps.toolchain.outputs.cargo }}
+          RUSTUP: ${{ steps.toolchain.outputs.rustup }}
+        run: |
+          echo "$RUSTC" && test "$RUSTC" != ""
+          echo "$RUSTC_HASH" && test "$RUSTC_HASH" != ""
+          echo "$CARGO" && test "$CARGO" != ""
+          echo "$RUSTUP" && test "$RUSTUP" != ""
+  install_in_docker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - stable
+          - nightly
+    # Docker image, not the GitHub Actions VM
+    container: ubuntu:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+        # `rustup` will need `curl` or `wget` later
+      - name: Install packages
+        run: apt-get update && apt-get install -y curl
+
+      - name: Use myself
+        id: toolchain
+        uses: ./
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          profile: minimal
+          override: true
+
+      - name: Test action outputs
+        env:
+          RUSTC: ${{ steps.toolchain.outputs.rustc }}
+          RUSTC_HASH: ${{ steps.toolchain.outputs.rustc_hash }}
+          CARGO: ${{ steps.toolchain.outputs.cargo }}
+          RUSTUP: ${{ steps.toolchain.outputs.rustup }}
+        run: |
+          echo "$RUSTC" && test "$RUSTC" != ""
+          echo "$RUSTC_HASH" && test "$RUSTC_HASH" != ""
+          echo "$CARGO" && test "$CARGO" != ""
+          echo "$RUSTUP" && test "$RUSTUP" != ""
