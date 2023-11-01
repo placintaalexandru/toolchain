@@ -1,10 +1,14 @@
 # `rust-toolchain` Action
 
-![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)
+![GitHub](https://img.shields.io/github/license/placintaalexandru/toolchain)
 ![Continuous integration](https://github.com/placintaalexandru/toolchain/workflows/Continuous%20integration/badge.svg)
 ![Dependabot enabled](https://img.shields.io/badge/Dependabot-Enabled-brightgreen)
-![GitHub tag checks state](https://img.shields.io/github/checks-status/placintaalexandru/toolchain/main)
 ![Codecov](https://img.shields.io/codecov/c/github/placintaalexandru/toolchain)
+![GitHub issues](https://img.shields.io/github/issues-raw/placintaalexandru/toolchain)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/placintaalexandru/toolchain)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/placintaalexandru/toolchain/main)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/placintaalexandru/toolchain)
+
 
 This GitHub Action installs [Rust toolchain](https://rust-lang.github.io/rustup/concepts/toolchains.html#toolchain-specification)
 with [rustup](https://github.com/rust-lang/rustup) help.
