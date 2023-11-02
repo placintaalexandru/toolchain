@@ -13,20 +13,20 @@ name: CodeQL
 on:
   push:
     branches:
-      - "main"
+      - main
   pull_request:
     # The branches below must be a subset of the branches above
     branches:
-      - "main"
+      - main
   schedule:
     # Every Monday at midnight: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-    - cron: '0 0 * * 1'
+    - cron: "0 0 * * 1"
+permissions:
+  contents: read
 concurrency:
   # Cancel old actions upon push
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
-permissions:
-  contents: read
 jobs:
   analyze:
     name: Analyze
