@@ -2,6 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/placintaalexandru/toolchain)
 ![Continuous integration](https://github.com/placintaalexandru/toolchain/workflows/Continuous%20integration/badge.svg)
+![CodeQL](https://github.com/placintaalexandru/toolchain/workflows/CodeQL/badge.svg)
 ![Dependabot enabled](https://img.shields.io/badge/Dependabot-Enabled-brightgreen)
 ![Codecov](https://img.shields.io/codecov/c/github/placintaalexandru/toolchain)
 ![GitHub issues](https://img.shields.io/github/issues-raw/placintaalexandru/toolchain)
