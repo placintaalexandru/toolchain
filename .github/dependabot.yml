@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # When a new version of action exists
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+  - package-ecosystem: npm
+    open-pull-requests-limit: 10
+    directory: /
+    schedule:
+      interval: weekly
+    ignore:
+      - dependency-name: "*"
+        # Ignore the patch and account for everything more important than minor
+        update-types:
+          - "version-update:semver-patch"

@@ -1,0 +1,71 @@
+name: CI Test - components input
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches:
+      - main
+  schedule:
+    # Every Monday at midnight: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: "0 0 * * 1"
+permissions:
+  contents: read
+concurrency:
+  # Cancel old actions upon push
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+jobs:
+  install_on_runner:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use myself
+        uses: ./
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+          # 2 components not included within the minimal profile
+          components: clippy, miri
+
+      - name: Test clippy exists
+        run: cargo clippy -V
+
+      - name: Test miri exists
+        run: cargo miri -V
+  install_in_docker:
+    runs-on: ubuntu-latest
+    # Docker image, not the GitHub Actions VM
+    container: ubuntu:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+        # `rustup` will need `curl` or `wget` later
+      - name: Install packages
+        run: apt-get update && apt-get install -y curl
+
+      - name: Use myself
+        uses: ./
+        with:
+          toolchain: nightly
+          profile: minimal
+          override: true
+          # 2 components not included within the minimal profile
+          components: clippy, miri
+
+      - name: Test clippy exists
+        run: cargo clippy -V
+
+      - name: Test miri exists
+        run: cargo miri -V
