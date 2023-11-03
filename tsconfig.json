@@ -23,7 +23,7 @@
         "suppressImplicitAnyIndexErrors": false,
         "target": "es2018",
         "declaration": false,
-        "sourceMap": false,
+        "sourceMap": true,
         "typeRoots": ["./types", "./node_modules/@types"]
     },
     "include": [
