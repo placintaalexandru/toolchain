@@ -1,23 +1,27 @@
-# `rust-toolchain` Action
+# GitHub Action - `rust-toolchain-reborn`
 
-![GitHub](https://img.shields.io/github/license/placintaalexandru/toolchain)
+![GitHub](https://img.shields.io/github/license/placintaalexandru/toolchain?label=License&color=blue&logo=gitbook)
 ![Continuous integration](https://github.com/placintaalexandru/toolchain/workflows/Continuous%20integration/badge.svg)
 ![CodeQL](https://github.com/placintaalexandru/toolchain/workflows/CodeQL/badge.svg)
-![Dependabot enabled](https://img.shields.io/badge/Dependabot-Enabled-brightgreen)
-![Codecov](https://img.shields.io/codecov/c/github/placintaalexandru/toolchain)
-![GitHub issues](https://img.shields.io/github/issues-raw/placintaalexandru/toolchain)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/placintaalexandru/toolchain)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/placintaalexandru/toolchain/main)
-![GitHub release (with filter)](https://img.shields.io/github/v/release/placintaalexandru/toolchain)
+![Dependabot enabled](https://img.shields.io/badge/Dependabot-Enabled-brightgreen?logo=dependabot)
+![GitHub contributors](https://img.shields.io/github/contributors/placintaalexandru/toolchain?logo=github&label=Contributors)
+[![Codecov](https://img.shields.io/codecov/c/github/placintaalexandru/toolchain?logo=codecov&label=Coverage)](https://app.codecov.io/gh/placintaalexandru/toolchain)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/placintaalexandru/toolchain?logo=github&label=Release&color=brightgreen)
+![GitHub issues](https://img.shields.io/github/issues-raw/placintaalexandru/toolchain?label=Open%20Issues&logo=github&color=blue)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/placintaalexandru/toolchain?label=Closed%20Issues&logo=github&color=blue)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/placintaalexandru/toolchain/main?label=Last%20Commit&logo=github&color=blue)
+[![Public workflows that use this action](https://img.shields.io/endpoint?label=Used%20By&url=https%3A%2F%2Fused-by.vercel.app%2Fapi%2Fgithub-actions%2Fused-by%3Faction%3Dplacintaalexandru%2Ftoolchain%26badge%3Dtrue)](https://sourcegraph.com/search?q=context:global+placintaalexandru/toolchain+file:.github/workflows&patternType=literal)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-rust--toolchain--reborn-b7410e?logo=github)](https://github.com/marketplace/actions/rust-toolchain-reborn)
 
 
-This GitHub Action installs [Rust toolchain](https://rust-lang.github.io/rustup/concepts/toolchains.html#toolchain-specification)
-with [rustup](https://github.com/rust-lang/rustup) help.
+This GitHub Action installs
+[Rust toolchain](https://rust-lang.github.io/rustup/concepts/toolchains.html#toolchain-specification)
+with the help of [rustup](https://github.com/rust-lang/rustup).
 
-It supports additional targets, components, and profiles and handles all
-these small papercuts for you.
+It supports additional targets, components, profiles and handles all these small
+paper cuts for you.
 
-**Table of Contents**
+## Table of Contents
 
 * [Example workflow](#example-workflow)
 * [Inputs](#inputs)
@@ -53,8 +57,6 @@ jobs:
             - name: Run cargo check
               run: cargo check
 ```
-
-See [additional recipes here](https://github.com/placintaalexandru/meta).
 
 ## Inputs
 

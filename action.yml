@@ -1,17 +1,16 @@
-name: 'rust-toolchain'
+name: 'rust-toolchain-reborn'
 description: 'Install the Rust toolchain'
-author: 'actions-rs team'
+author: 'placintaalexandru team'
 branding:
-  icon: play-circle
-  color: black
+  icon: activity
+  color: orange
 inputs:
   toolchain:
     description: Rust toolchain name.
-    default: stable
+    required: false
   profile:
     description: Name of the group of components to be installed for a new toolchain
     required: false
-    default: default
   components:
     description: Comma-separated list of components to be additionally installed for a new toolchain
     required: false
@@ -24,11 +23,12 @@ inputs:
     default: "false"
   override:
     description: Set installed toolchain as an override for a directory
+    required: false
     default: "false"
   force:
     description: Force an update, even if some components are missing
     required: false
-    default: "true"
+    default: "false"
 outputs:
   rustc:
     description: Installed Rustc version
@@ -38,7 +38,6 @@ outputs:
     description: Installed Cargo version
   rustup:
     description: Installed rustup version
-
 runs:
   using: node20
   main: dist/index.js

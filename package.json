@@ -27,10 +27,10 @@
         "rustup",
         "toolchain"
     ],
-    "author": "actions-rs",
+    "author": "placintaalexandru",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/placintaalexandru/rust-core/issues"
+        "url": "https://github.com/placintaalexandru/toolchain/issues"
     },
     "dependencies": {
         "@actions/core": "^1.2.6",
