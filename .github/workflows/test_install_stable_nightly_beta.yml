@@ -1,4 +1,4 @@
-name: CI Test - install stable & nightly
+name: CI Test - install stable, nightly, and beta
 on:
   push:
     branches:
@@ -39,7 +39,6 @@ jobs:
         with:
           toolchain: ${{ matrix.toolchain }}
           profile: minimal
-          override: true
 
       - name: Test action outputs
         env:
@@ -76,7 +75,6 @@ jobs:
         with:
           toolchain: ${{ matrix.toolchain }}
           profile: minimal
-          override: true
 
       - name: Test action outputs
         env:
