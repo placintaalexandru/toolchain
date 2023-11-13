@@ -1,16 +1,16 @@
 # GitHub Action - `rust-toolchain-reborn`
 
-![GitHub](https://img.shields.io/github/license/placintaalexandru/toolchain?label=License&color=blue&logo=gitbook)
-![Continuous integration](https://github.com/placintaalexandru/toolchain/workflows/Continuous%20integration/badge.svg)
-![CodeQL](https://github.com/placintaalexandru/toolchain/workflows/CodeQL/badge.svg)
+![GitHub](https://img.shields.io/github/license/crusty-pie/toolchain?label=License&color=blue&logo=gitbook)
+![Continuous integration](https://github.com/crusty-pie/toolchain/workflows/Continuous%20integration/badge.svg)
+![CodeQL](https://github.com/crusty-pie/toolchain/workflows/CodeQL/badge.svg)
 ![Dependabot enabled](https://img.shields.io/badge/Dependabot-Enabled-brightgreen?logo=dependabot)
-![GitHub contributors](https://img.shields.io/github/contributors/placintaalexandru/toolchain?logo=github&label=Contributors)
-[![Codecov](https://img.shields.io/codecov/c/github/placintaalexandru/toolchain?logo=codecov&label=Coverage)](https://app.codecov.io/gh/placintaalexandru/toolchain)
-![GitHub release (with filter)](https://img.shields.io/github/v/release/placintaalexandru/toolchain?logo=github&label=Release&color=brightgreen)
-![GitHub issues](https://img.shields.io/github/issues-raw/placintaalexandru/toolchain?label=Open%20Issues&logo=github&color=blue)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/placintaalexandru/toolchain?label=Closed%20Issues&logo=github&color=blue)
-![GitHub last commit (branch)](https://img.shields.io/github/last-commit/placintaalexandru/toolchain/main?label=Last%20Commit&logo=github&color=blue)
-[![Public workflows that use this action](https://img.shields.io/endpoint?label=Used%20By&url=https%3A%2F%2Fused-by.vercel.app%2Fapi%2Fgithub-actions%2Fused-by%3Faction%3Dplacintaalexandru%2Ftoolchain%26badge%3Dtrue)](https://sourcegraph.com/search?q=context:global+placintaalexandru/toolchain+file:.github/workflows&patternType=literal)
+![GitHub contributors](https://img.shields.io/github/contributors/crusty-pie/toolchain?logo=github&label=Contributors)
+[![Codecov](https://img.shields.io/codecov/c/github/crusty-pie/toolchain?logo=codecov&label=Coverage)](https://app.codecov.io/gh/crusty-pie/toolchain)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/crusty-pie/toolchain?logo=github&label=Release&color=brightgreen)
+![GitHub issues](https://img.shields.io/github/issues-raw/crusty-pie/toolchain?label=Open%20Issues&logo=github&color=blue)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/crusty-pie/toolchain?label=Closed%20Issues&logo=github&color=blue)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/crusty-pie/toolchain/main?label=Last%20Commit&logo=github&color=blue)
+[![Public workflows that use this action](https://img.shields.io/endpoint?label=Used%20By&url=https%3A%2F%2Fused-by.vercel.app%2Fapi%2Fgithub-actions%2Fused-by%3Faction%3Dplacintaalexandru%2Ftoolchain%26badge%3Dtrue)](https://sourcegraph.com/search?q=context:global+crusty-pie/toolchain+file:.github/workflows&patternType=literal)
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-rust--toolchain--reborn-b7410e?logo=github)](https://github.com/marketplace/actions/rust-toolchain-reborn)
 
 
@@ -46,7 +46,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: Install latest nightly
-              uses: placintaalexandru/toolchain@v1
+              uses: crusty-pie/toolchain@v1
               with:
                   toolchain: nightly
                   override: true
@@ -96,7 +96,7 @@ minimally required to be set of components, for example:
 
 ```yaml
 - name: Install minimal nightly
-  uses: placintaalexandru/toolchain@v1
+  uses: crusty-pie/toolchain@v1
   with:
     profile: minimal
     toolchain: nightly
@@ -118,7 +118,7 @@ and in combination with the [profiles](#profiles) input it allows to install onl
 
 ```yaml
 - name: Install minimal stable with clippy and rustfmt
-  uses: placintaalexandru/toolchain@v1
+  uses: crusty-pie/toolchain@v1
   with:
     profile: minimal
     toolchain: stable
@@ -131,7 +131,7 @@ to install the minimal set of `nightly` toolchain components with the `rustfmt` 
 
 ```yaml
 - name: Install minimal nightly with clippy and rustfmt
-  uses: placintaalexandru/toolchain@v1
+  uses: crusty-pie/toolchain@v1
   with:
     profile: minimal
     toolchain: nightly
@@ -164,11 +164,11 @@ Action execution will fail.
 ## License
 
 This Action is distributed under the terms of the MIT license.
-See [LICENSE](https://github.com/placintaalexandru/toolchain/blob/main/LICENSE) for details.
+See [LICENSE](https://github.com/crusty-pie/toolchain/blob/main/LICENSE) for details.
 
 ## Contribute and support
 
 Any contributions are welcomed!
 
 If you want to report a bug or have a feature request,
-check the [Contributing guide](https://github.com/placintaalexandru/toolchain/blob/main/CONTRIBUTING.md).
+check the [Contributing guide](https://github.com/crusty-pie/toolchain/blob/main/CONTRIBUTING.md).
