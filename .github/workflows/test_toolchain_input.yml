@@ -42,7 +42,6 @@ jobs:
       - name: Test toolchain version
         run: |
           test "${{ steps.toolchain.outputs.rustc }}" = "${{ matrix.toolchain }}"
-
   install_in_docker:
     runs-on: ubuntu-latest
     strategy:
