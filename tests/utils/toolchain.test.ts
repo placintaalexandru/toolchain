@@ -1,7 +1,6 @@
 import { describe } from "jest-circus";
 import * as utils from "../../src/utils/toolchain";
 import * as mockedFs from "fs";
-import fs from "fs";
 
 jest.mock("fs");
 
@@ -38,7 +37,7 @@ describe("Tests of toolchain utils", () => {
             profile = "${profile}"
         `;
 
-        (fs.readFileSync as jest.Mock).mockReturnValue(tomlData);
+        (mockedFs.readFileSync as jest.Mock).mockReturnValue(tomlData);
         const toolchainArgs = utils.toolchainArgs("");
 
         expect(toolchainArgs.toolchain).toBe(toolchain);
@@ -53,7 +52,7 @@ describe("Tests of toolchain utils", () => {
         const tomlData = `
             [toolchain]
         `;
-        (fs.readFileSync as jest.Mock).mockReturnValue(tomlData);
+        (mockedFs.readFileSync as jest.Mock).mockReturnValue(tomlData);
         const toolchainArgs = utils.toolchainArgs("");
 
         expect(toolchainArgs.toolchain == null);
@@ -64,7 +63,7 @@ describe("Tests of toolchain utils", () => {
 
     test("File is empty", () => {
         const tomlData = "";
-        (fs.readFileSync as jest.Mock).mockReturnValue(tomlData);
+        (mockedFs.readFileSync as jest.Mock).mockReturnValue(tomlData);
         const toolchainArgs = utils.toolchainArgs("");
 
         expect(toolchainArgs.toolchain == null);

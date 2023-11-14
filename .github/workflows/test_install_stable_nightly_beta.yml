@@ -1,4 +1,4 @@
-name: CI Test - install stable & nightly
+name: CI Test - install stable, nightly, and beta
 on:
   push:
     branches:
@@ -28,6 +28,7 @@ jobs:
         toolchain:
           - stable
           - nightly
+          - beta
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -58,6 +59,7 @@ jobs:
         toolchain:
           - stable
           - nightly
+          - beta
     # Docker image, not the GitHub Actions VM
     container: ubuntu:latest
     steps:
