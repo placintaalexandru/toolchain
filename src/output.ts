@@ -1,5 +1,5 @@
 import { Output } from "./types";
-import { execStdout } from "./utils/exec";
+import * as execUtils from "./utils/exec";
 import * as core from "@actions/core";
 
 export class Outputs {
@@ -20,6 +20,7 @@ export class Outputs {
      * @param{string[]} args - list of arguments the executable accepts.
      * @param{RegExp} r - regular expression used to extract the desired piece of the command's output.
      * @param{string} outputName - name of the output.
+     * @param matchIndex{number} - index of the match in the regular expression.
      * @returns{Promise<Output>} - absolute path to the toolchain file.
      */
     static parseCmdOutputWithRegex = async (
@@ -27,8 +28,9 @@ export class Outputs {
         args: string[],
         r: RegExp,
         outputName: string,
+        matchIndex: number,
     ): Promise<Output> => {
-        const stdout = await execStdout(exe, args);
+        const stdout = await execUtils.execStdout(exe, args);
 
         core.debug(
             `Command: ${exe}\nArgs:${args.toString()}\nOutput: ${stdout}`,
@@ -36,7 +38,7 @@ export class Outputs {
 
         const match = stdout.match(r);
 
-        if (!match || !match[1]) {
+        if (!match || matchIndex >= match.length) {
             const msg = `Could not match ${stdout}`;
             core.error(msg);
             throw new Error(msg);
@@ -44,7 +46,7 @@ export class Outputs {
 
         return Promise.resolve({
             name: outputName,
-            value: match[1],
+            value: match[matchIndex],
         });
     };
 
@@ -52,8 +54,9 @@ export class Outputs {
         return await Outputs.parseCmdOutputWithRegex(
             "rustc",
             ["-V"],
-            /rustc (\d+\.\d+\.\d+(-nightly)?)/,
+            /rustc (\d+\.\d+\.\d+(-nightly|-beta\.\d+)?)/,
             "rustc",
+            1,
         );
     };
 
@@ -61,8 +64,9 @@ export class Outputs {
         return await Outputs.parseCmdOutputWithRegex(
             "rustc",
             ["-V"],
-            /rustc \d+\.\d+\.\d+(?:-\w+)? \((\w+) \d+-\d+-\d+\)/,
+            /rustc (\d+\.\d+\.\d+(-nightly|-beta\.\d+)?) \((\w+) \d+-\d+-\d+\)/,
             "rustc_hash",
+            3,
         );
     };
 
@@ -70,8 +74,9 @@ export class Outputs {
         return await Outputs.parseCmdOutputWithRegex(
             "cargo",
             ["-V"],
-            /cargo (\d+\.\d+\.\d+(-nightly)?) \(.+ (\d{4}-\d{2}-\d{2})\)/,
+            /cargo (\d+\.\d+\.\d+(-nightly|-beta\.\d+)?) \(.+ (\d{4}-\d{2}-\d{2})\)/,
             "cargo",
+            1,
         );
     };
 
@@ -81,6 +86,7 @@ export class Outputs {
             ["-V"],
             /rustup (\d+\.\d+\.\d+) \(.+\)/,
             "rustup",
+            1,
         );
     };
 }
