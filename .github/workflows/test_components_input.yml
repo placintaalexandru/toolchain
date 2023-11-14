@@ -18,6 +18,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   install_on_runner:
+    name: Components (runner)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -25,6 +26,11 @@ jobs:
           - ubuntu-latest
           - macOS-latest
           - windows-latest
+        # Test with multiple spacing
+        components:
+          - clippy, miri, llvm-tools-preview
+          - clippy,miri,llvm-tools-preview
+          - clippy,miri, llvm-tools-preview
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -35,15 +41,21 @@ jobs:
           toolchain: nightly
           profile: minimal
           override: true
-          # 2 components not included within the minimal profile
-          components: clippy, miri
+          components: "${{ matrix.components }}"
 
       - name: Test clippy exists
-        run: cargo clippy -V
+        run: |
+          test $(rustup component list | grep clippy | wc -l) -eq 1
 
       - name: Test miri exists
-        run: cargo miri -V
+        run: |
+          test $(rustup component list | grep clippy | wc -l) -eq 1
+
+      - name: Test llvm exists
+        run: |
+          test $(rustup component list | grep llvm | wc -l) -eq 1
   install_in_docker:
+    name: Components (docker)
     runs-on: ubuntu-latest
     # Docker image, not the GitHub Actions VM
     container: ubuntu:latest
@@ -65,7 +77,13 @@ jobs:
           components: clippy, miri
 
       - name: Test clippy exists
-        run: cargo clippy -V
+        run: |
+          test $(rustup component list | grep clippy | wc -l) -eq 1
 
       - name: Test miri exists
-        run: cargo miri -V
+        run: |
+          test $(rustup component list | grep clippy | wc -l) -eq 1
+
+      - name: Test llvm exists
+        run: |
+          test $(rustup component list | grep llvm | wc -l) -eq 1

@@ -18,6 +18,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   install_on_runner:
+    name: Override (runner)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -39,11 +40,11 @@ jobs:
           profile: minimal
           override: true
 
-      - name: Test toolchain version
+      - name: Test override
         run: |
-          test "${{ steps.toolchain.outputs.rustc }}" = "${{ matrix.toolchain }}"
-
+          test $(rustup override list | grep "${{ matrix.toolchain }}" | wc -l) -eq 1
   install_in_docker:
+    name: Override (docker)
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -67,6 +68,6 @@ jobs:
           profile: minimal
           override: true
 
-      - name: Test toolchain version
+      - name: Test override
         run: |
-          test "${{ steps.toolchain.outputs.rustc }}" = "${{ matrix.toolchain }}"
+          test $(rustup override list | grep "${{ matrix.toolchain }}" | wc -l) -eq 1
