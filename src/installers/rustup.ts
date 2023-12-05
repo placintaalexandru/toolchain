@@ -100,28 +100,30 @@ export class RustUp {
         }
     }
 
-    public async supportProfiles(): Promise<boolean> {
+    async versionSupport(
+        threshold: semver.SemVer,
+        featureName: string,
+    ): Promise<boolean> {
         const version = await this.version();
-        const supports = semver.gte(version, RustUp.PROFILES_MIN_VERSION);
+        const supports = semver.gte(version, threshold);
+
         if (supports) {
-            core.info(`Installed rustup ${version.version} support profiles`);
+            core.info(
+                `Installed rustup ${version.version} supports ${featureName}`,
+            );
         } else {
-            core.warning(`Installed rustup ${version.version} does not support profiles, \
-expected at least ${RustUp.PROFILES_MIN_VERSION.version}`);
+            core.warning(`Installed rustup ${version.version} does not support ${featureName}, \
+expected at least ${threshold.version}`);
         }
         return supports;
     }
 
+    public async supportProfiles(): Promise<boolean> {
+        return this.versionSupport(RustUp.PROFILES_MIN_VERSION, "profiles");
+    }
+
     public async supportComponents(): Promise<boolean> {
-        const version = await this.version();
-        const supports = semver.gte(version, RustUp.COMPONENTS_MIN_VERSION);
-        if (supports) {
-            core.info(`Installed rustup ${version.version} support components`);
-        } else {
-            core.info(`Installed rustup ${version.version} does not support components, \
-expected at least ${RustUp.PROFILES_MIN_VERSION.version}`);
-        }
-        return supports;
+        return this.versionSupport(RustUp.COMPONENTS_MIN_VERSION, "components");
     }
 
     /**
