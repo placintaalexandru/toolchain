@@ -100,6 +100,13 @@ export class RustUp {
         }
     }
 
+    /**
+     * Converts the user input to the actual toolchain options that will be used.
+     *
+     * @param{semver.SemVer} threshold - minimal semver required to support the feature.
+     * @param{string} featureName - name of the feature tested.
+     * @returns{boolean} - truth value if rustup supports the feature.
+     */
     async versionSupport(
         threshold: semver.SemVer,
         featureName: string,
