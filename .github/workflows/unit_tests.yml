@@ -36,7 +36,7 @@ jobs:
         run: npm run test
 
       - name: Upload to codecov.io
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         env:
           fail_ci_if_error: true
           verbose: true
