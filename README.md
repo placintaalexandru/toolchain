@@ -1,7 +1,7 @@
 # GitHub Action - `rust-toolchain-reborn`
 
 ![GitHub](https://img.shields.io/github/license/crusty-pie/toolchain?label=License&color=blue&logo=gitbook)
-![Continuous integration](https://github.com/crusty-pie/toolchain/workflows/Continuous%20integration/badge.svg)
+![Unit tests](https://github.com/crusty-pie/toolchain/workflows/Unit%20tests/badge.svg)
 ![CodeQL](https://github.com/crusty-pie/toolchain/workflows/CodeQL/badge.svg)
 ![Dependabot enabled](https://img.shields.io/badge/Dependabot-Enabled-brightgreen?logo=dependabot)
 ![GitHub contributors](https://img.shields.io/github/contributors/crusty-pie/toolchain?logo=github&label=Contributors)
@@ -21,7 +21,6 @@
 [![Public workflows that use this action](https://img.shields.io/endpoint?label=Used%20By&url=https%3A%2F%2Fused-by.vercel.app%2Fapi%2Fgithub-actions%2Fused-by%3Faction%3Dplacintaalexandru%2Ftoolchain%26badge%3Dtrue)](https://sourcegraph.com/search?q=context:global+crusty-pie/toolchain+file:.github/workflows&patternType=literal)
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-rust--toolchain--reborn-b7410e?logo=github)](https://github.com/marketplace/actions/rust-toolchain-reborn)
 
-
 This GitHub Action installs
 [Rust toolchain](https://rust-lang.github.io/rustup/concepts/toolchains.html#toolchain-specification)
 with the help of [rustup](https://github.com/rust-lang/rustup).
@@ -31,14 +30,16 @@ paper cuts for you.
 
 ## Table of Contents
 
-* [Example workflow](#example-workflow)
-* [Inputs](#inputs)
-* [Outputs](#outputs)
-* [Profiles](#profiles)
-* [Components](#components)
-* [The toolchain file](#the-toolchain-file)
-* [License](#license)
-* [Contribute and support](#contribute-and-support)
+- [GitHub Action - `rust-toolchain-reborn`](#github-action---rust-toolchain-reborn)
+  - [Table of Contents](#table-of-contents)
+  - [Example workflow](#example-workflow)
+  - [Inputs](#inputs)
+  - [Outputs](#outputs)
+  - [Profiles](#profiles)
+  - [Components](#components)
+  - [The toolchain file](#the-toolchain-file)
+  - [License](#license)
+  - [Contribute and support](#contribute-and-support)
 
 ## Example workflow
 
