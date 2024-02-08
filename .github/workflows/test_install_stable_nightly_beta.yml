@@ -53,6 +53,8 @@ jobs:
           echo "$RUSTC_HASH" && test "$RUSTC_HASH" != ""
           echo "$CARGO" && test "$CARGO" != ""
           echo "$RUSTUP" && test "$RUSTUP" != ""
+        # On Windows runners, the commands above are problematic
+        shell: bash
   install_in_docker:
     name: Toolchain stable, nightly, and beta (docker)
     runs-on: ubuntu-latest
