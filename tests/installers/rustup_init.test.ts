@@ -33,7 +33,7 @@ describe("Tests of rustup init", () => {
             // and mock the wrapper
             try {
                 await RustUpInit.install();
-            } catch (except) {
+            } catch {
                 expect(mockedTc.downloadTool).toHaveBeenCalledWith(
                     "https://sh.rustup.rs",
                 );

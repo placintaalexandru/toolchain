@@ -111,7 +111,7 @@ describe("Tests of rustup", () => {
 
         try {
             await rustUp.version();
-        } catch (e) {
+        } catch {
             threwError = true;
         }
 
