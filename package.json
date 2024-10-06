@@ -33,7 +33,7 @@
         "url": "https://github.com/placintaalexandru/toolchain/issues"
     },
     "dependencies": {
-        "@actions/core": "^1.11.0",
+        "@actions/core": "^1.11.1",
         "@actions/exec": "^1.0.4",
         "@actions/io": "^1.0.2",
         "@actions/tool-cache": "^2.0.1",
