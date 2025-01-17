@@ -36,7 +36,7 @@
         "@actions/core": "^1.11.1",
         "@actions/exec": "^1.0.4",
         "@actions/io": "^1.0.2",
-        "@actions/tool-cache": "^2.0.1",
+        "@actions/tool-cache": "^2.0.2",
         "action-input-parser": "1.2.38",
         "commander": "13.0.0",
         "semver": "^7.6.3",
