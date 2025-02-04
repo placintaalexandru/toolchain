@@ -39,7 +39,7 @@
         "@actions/tool-cache": "^2.0.2",
         "action-input-parser": "1.2.38",
         "commander": "13.1.0",
-        "semver": "^7.7.0",
+        "semver": "^7.7.1",
         "stream": "^0.0.3",
         "toml": "^3.0.0"
     },
